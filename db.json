@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "username": "bhanusree",
+      "useremail": "bhanu@gmail.com",
+      "userpassword": "Bhanu@123",
+      "id": 1
+    },
+    {
+      "username": "Harshitha",
+      "useremail": "harshi@gmail.com",
+      "userpassword": "Harsi@123",
+      "id": 2
+    },
+    {
+      "username": "deepikaaa",
+      "useremail": "deepu@gmail.com",
+      "userpassword": "Deepu@123",
+      "id": 3
+    },
+    {
+      "username": "shyammuu",
+      "useremail": "harshi@gmail.com",
+      "userpassword": "Shyam@123",
+      "id": 4
+    },
+    {
+      "username": "bhanusri",
+      "useremail": "sree@1234.email",
+      "userpassword": "Sree@123",
+      "id": 5
+    },
+    {
+      "username": "pavani87",
+      "useremail": "harshi@gmail.com",
+      "userpassword": "Sree@123",
+      "id": 6
+    },
+    {
+      "username": "bhanusree",
+      "useremail": "sree@1234.email",
+      "userpassword": "Sree@123",
+      "id": 7
+    }
+  ]
+}

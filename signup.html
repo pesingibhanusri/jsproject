@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"  href="sl.css">
+</head>
+<body>
+    <form id="signupform">
+    <div class="container">
+<input type="text" name="username" placeholder="username" id="username" autocomplete="username">
+<p class="errmsg" id="errmsg1">please enter a valid username</p>
+<input type="email" name="useremail" placeholder="useremail" id="usermail" autocomplete="email">
+<p class="errmsg" id="errmsg2">please enter a valid usermail</p>
+<input type="password" name="userpassword" placeholder="userpassword" id="userpassword" autocomplete="current-password">
+<p class="errmsg" id="errmsg3">please enter a valid password</p>
+
+
+<button type="submit">signup</button>
+<button id="guest">Guest</button>
+
+<p >Have an account go to <a href="./login.html"><b>login<b></b></a></p>
+
+    </div> 
+  
+    
+</form>
+<script>
+    
+    
+
+    // username checking
+    const username=document.getElementById("username")
+    const errormsg1=document.getElementById("errmsg1")
+    // initialise the regex
+    const nameregex=/^[\w]{8,10}$/
+    username.addEventListener("input",function(e){
+        // console.log(e.target.value)
+        const namevalid=nameregex.test(e.target.value)
+       
+        if(namevalid){
+             errormsg1.style.display="none"
+        }
+        else{
+            errormsg1.style.display="block"
+        }
+    })
+
+// usermail checking
+const usermail=document.getElementById("usermail")
+const  errormsg2=document.getElementById("errmsg2")
+const emailregex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+usermail.addEventListener("input",function(e){
+    const emailvalid=emailregex.test(e.target.value)
+    
+    if(emailvalid){
+        errormsg2.style.display="none"
+    }else{
+        errormsg2.style.display="block"
+    }
+})
+
+// userpassword checking
+const userpassword=document.getElementById("userpassword")
+const  errormsg3=document.getElementById("errmsg3")
+const passwordregex=/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
+userpassword.addEventListener("input",function(e){
+    const passwordvalid=passwordregex.test(e.target.value)
+ 
+    if(passwordvalid){
+        errormsg3.style.display="none"
+    }else{
+        errormsg3.style.display="block"
+
+    }
+})
+
+
+// form submission
+const signupform = document.getElementById("signupform");
+
+        signupform.addEventListener("submit", async function(e) {
+            e.preventDefault();  // Prevent the form from submitting
+            // Get values from the form
+            // console.log("form submitted")
+            const usernameValue = username.value;
+            const userEmailValue = usermail.value;
+            const userPasswordValue = userpassword.value;
+
+
+            
+
+            const isUsernameValid = nameregex.test(usernameValue);
+            const isEmailValid = emailregex.test(userEmailValue);
+            const isPasswordValid = passwordregex.test(userPasswordValue);
+
+            if (!isUsernameValid || !isEmailValid || !isPasswordValid) {
+                alert("Please fill in all fields correctly.");
+                return;  
+            }
+
+
+
+ const signupdata={
+    username:usernameValue,
+    useremail:userEmailValue,
+    userpassword:userPasswordValue
+ }
+ let res= await fetch("http://localhost:3000/users",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(signupdata)
+ })
+ 
+ let data =await res.json()
+ console.log(data)
+ alert("signup sucessfull!");
+ 
+ window.location.href="./login.html"
+
+        });
+
+        let guestbtn=document.getElementById("guest")  
+    guestbtn.addEventListener("click",(e)=>{
+        e.preventDefault();
+         window.location.href="./welcome.html"
+    })
+      
+        
+</script>
+</body>
+</html>

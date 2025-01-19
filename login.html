@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+     <style>
+        /* *{
+    box-sizing: border-box;
+    
+} */
+body{
+    background-image: url("./num1.jpg");
+    
+    background-size: 100% 100%; 
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+
+    }
+.container{
+  
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+
+    margin: auto ;
+}
+input,button{
+    padding: 10px;
+    border: 2px solid black;
+    outline: none;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color:   #55342B ;
+    font-size: 18px;
+    color: white;
+   
+}
+button{
+    background-color: burlywood;
+    cursor: pointer;
+}
+
+     </style>
+</head>
+<body>
+    <form id="loginform">
+    <div class="container">
+        <input type="text" name="username" placeholder="username" id="username" autocomplete="username">
+
+
+        <input type="password" name="userpassword" placeholder="userpassword" id="userpassword" autocomplete="password">
+ 
+        <button type="submit">login</button>
+        <p>Have an account go to <a href="./signup.html"><b>signup</b></a></p>
+            </div> 
+            
+</body>
+<script>
+let loginform=document.getElementById("loginform")
+loginform.addEventListener("submit",async(e)=>{
+    e.preventDefault()
+
+const username=document.getElementById("username").value
+const password=document.getElementById("userpassword").value
+
+const res=await fetch(" http://localhost:3000/users")
+const  users=await res.json()
+
+const user=users.find(user=>user.username===username && user.userpassword===password)
+if(user){
+    alert("login succcessfully")
+    window.location.href="./welcome.html"
+}else{
+    alert("invalid credentials")
+}
+
+})
+
+
+</script>
+</html>
